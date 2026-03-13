@@ -132,6 +132,7 @@ margin-top:20px;
 
 <div class="buttons">
 <button class="btn" onclick="acceptLove()">Anh đồng ý 💖</button>
+<button class="btn btn2" onclick="acceptLove()">Anh OK 😆</button>
 <button class="btn" id="noBtn" style="background:#999">Không đồng ý 🙃</button>
 </div>
 
@@ -183,7 +184,7 @@ const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
 const seconds = Math.floor((distance%(1000*60))/1000);
 
 if(distance < 0){
-document.getElementById("countdown").innerHTML="⛔ Hết thời gian";
+document.getElementById("countdown").innerHTML="⛔ Hết thời gian thử việc";
 }else{
 document.getElementById("countdown").innerHTML=`⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
 }
