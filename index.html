@@ -104,6 +104,11 @@ font-size:20px;
 margin-top:20px;
 }
 
+.resetBtn{
+margin-top:15px;
+background:#666;
+}
+
 </style>
 </head>
 
@@ -135,6 +140,8 @@ margin-top:20px;
 <button class="btn btn2" onclick="acceptLove()">Anh OK 😆</button>
 <button class="btn" id="noBtn" style="background:#999">Không đồng ý 🙃</button>
 </div>
+
+<button class="btn resetBtn" onclick="resetContract()">🔄 Reset (chỉ Linh dùng để test)</button>
 
 <p class="small">Ký tên: Linh (người yêu đáng yêu nhất)</p>
 
@@ -184,7 +191,7 @@ const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
 const seconds = Math.floor((distance%(1000*60))/1000);
 
 if(distance < 0){
-document.getElementById("countdown").innerHTML="⛔ Hết thời gian";
+document.getElementById("countdown").innerHTML="⛔ Hết thời gian thử việc";
 }else{
 document.getElementById("countdown").innerHTML=`⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
 }
@@ -208,6 +215,7 @@ document.body.appendChild(heart);
 setTimeout(()=>{heart.remove()},4000);
 
 }
+
 
 // ký hợp đồng
 function acceptLove(){
@@ -234,7 +242,15 @@ document.getElementById("loveScreen").style.display="flex";
 
 }
 
-// troll nút từ chối
+
+// reset để test
+function resetContract(){
+localStorage.removeItem("loveContractSigned");
+location.reload();
+}
+
+
+// nút troll
 const noBtn = document.getElementById("noBtn");
 
 noBtn.addEventListener("mouseover",()=>{
@@ -262,7 +278,7 @@ else if(refuseCount==3){
 alert("⚠️ Phát hiện hành vi gian lận!");
 }
 else{
-alert("💖 Hệ thống xác nhận Thuần đã bấm nhầm.\nHợp đồng sẽ được ký tự động.");
+alert("💖 Hệ thống xác nhận Thuần đã bấm nhầm. Hợp đồng sẽ được ký tự động.");
 acceptLove();
 }
 
