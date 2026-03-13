@@ -155,6 +155,39 @@ margin-top:20px;
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a0a2b4f9.mp3?filename=romantic-love-11786.mp3" type="audio/mpeg">
 </audio>
 <script>
+  // kiểm tra nếu đã ký rồi
+if(localStorage.getItem("loveContractSigned")){
+
+document.body.innerHTML = `
+<div style="
+display:flex;
+align-items:center;
+justify-content:center;
+height:100vh;
+background:linear-gradient(135deg,#ffb6c9,#ffe3ec);
+font-family:sans-serif;
+text-align:center;
+">
+
+<div style="
+background:white;
+padding:40px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+">
+
+<h1>💖 Hợp đồng đã được ký</h1>
+
+<p>Thuần đã ký hợp đồng tình yêu với Linh rồi.</p>
+
+<p>Không thể ký thêm lần nữa 😌</p>
+
+</div>
+
+</div>
+`;
+
+}
 
 // đếm ngược
 const end = new Date("2026-03-16T23:59:00").getTime();
@@ -201,6 +234,31 @@ setTimeout(()=>{heart.remove()},4000);
 // đồng ý
 
 function acceptLove(){
+
+// lưu trạng thái đã ký
+localStorage.setItem("loveContractSigned","true");
+
+const music=document.getElementById("loveMusic");
+music.play();
+
+// tạo tim bay
+for(let i=0;i<60;i++){
+setTimeout(createHeart,i*50);
+}
+
+// ghi thời gian ký
+const now=new Date();
+const signTime= now.toLocaleString("vi-VN");
+
+const message=document.querySelector(".message");
+
+message.innerHTML=`💖 Thuần đã chính thức gia hạn hợp đồng tình yêu với Linh<br><br>🖊 Ký lúc: <b>${signTime}</b>`;
+
+setTimeout(()=>{
+document.getElementById("loveScreen").style.display="flex";
+},800);
+
+}
 
 const music=document.getElementById("loveMusic");
 music.play();
@@ -263,6 +321,3 @@ acceptLove();
 
 </body>
 </html>
-
-
-
