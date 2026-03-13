@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hợp Đồng Tình Yêu - Linh ❤️ Thuần</title>
+
+<style>
+body{
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ffb6c9,#ffe3ec);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  margin:0;
+  overflow:hidden;
+}
+
+.card{
+  background:white;
+  padding:35px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  max-width:520px;
+  text-align:center;
+  z-index:2;
+}
+
+h1{color:#ff4d6d;margin-bottom:10px}
+
+p{color:#444;line-height:1.6}
+
+.rules{text-align:left;margin:20px 0}
+
+.buttons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+.btn{
+  padding:12px 22px;
+  border:none;
+  border-radius:12px;
+  background:#ff4d6d;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.25s;
+}
+
+.btn:hover{transform:scale(1.08)}
+
+.btn2{background:#ff7a90}
+
+.countdown{
+  font-size:22px;
+  font-weight:bold;
+  color:#ff4d6d;
+  margin:10px 0 20px;
+}
+
+.small{font-size:13px;color:#888;margin-top:15px}
+
+.heart{
+  position:fixed;
+  font-size:22px;
+  animation:float 4s linear forwards;
+}
+
+@keyframes float{
+from{transform:translateY(0) scale(1);opacity:1}
+to{transform:translateY(-900px) scale(1.8);opacity:0}
+}
+
+/* màn hình kết quả */
+.loveScreen{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ background:linear-gradient(135deg,#ff8fab,#ffc2d1);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ z-index:5;
+}
+
+.loveScreen h2{
+ color:white;
+ font-size:34px;
+ margin-bottom:15px;
+}
+
+.loveScreen img{
+ width:240px;
+ border-radius:20px;
+ box-shadow:0 10px 30px rgba(0,0,0,0.25);
+}
+
+.message{
+ color:white;
+ font-size:20px;
+ margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>📄 Hợp Đồng Tình Yêu</h1>
+
+<p><b>Người tuyển dụng:</b> Linh 💅</p>
+<p><b>Ứng viên:</b> Thuần 😎</p>
+
+<p>Sau khi làm Linh hết giận, Thuần được cấp <b>3 ngày thử việc</b> 😌</p>
+
+<div class="countdown" id="countdown"></div>
+
+<div class="rules">
+<p><b>Điều khoản:</b></p>
+<p>1️⃣ Thuần phải làm Linh vui mỗi ngày</p>
+<p>2️⃣ Không được làm Linh buồn</p>
+<p>3️⃣ Quan tâm Linh nhiều hơn bình thường</p>
+<p>4️⃣ Khi Linh giận phải dỗ ngay lập tức</p>
+</div>
+
+<p>Nếu Linh hài lòng 👉 hợp đồng sẽ <b>gia hạn vô thời hạn</b> 💕</p>
+
+<div class="buttons">
+<button class="btn" onclick="acceptLove()">Anh đồng ý 💖</button>
+<button class="btn btn2" onclick="acceptLove()">Anh OK 😆</button>
+<button class="btn" id="noBtn" style="background:#999">Không đồng ý 🙃</button>
+</div>
+
+<p class="small">Ký tên: Linh (người yêu đáng yêu nhất)</p>
+
+</div>
+
+<div class="loveScreen" id="loveScreen">
+
+<h2>Thuần ❤️ Linh</h2>
+
+<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="cute hug" />
+
+<div class="message">Hợp đồng tình yêu đã ký thành công 💞</div>
+
+</div>
+
+<audio id="loveMusic" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8a0a2b4f9.mp3?filename=romantic-love-11786.mp3"></audio>
+
+<script>
+
+// ===== THỜI GIAN KẾT THÚC CỐ ĐỊNH =====
+// chỉnh lại nếu Linh muốn đổi ngày
+const end = new Date("2026-03-16T23:59:00").getTime();
+
+const timer = setInterval(()=>{
+
+const now = new Date().getTime();
+const distance = end - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
+
+if(distance < 0){
+ clearInterval(timer);
+ document.getElementById("countdown").innerHTML="⛔ Hết thời gian thử việc";
+}else{
+ document.getElementById("countdown").innerHTML=`⏳ Còn ${days} ngày ${hours} giờ ${minutes} phút ${seconds} giây`;
+}
+
+},1000);
+
+
+function createHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="💗";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.bottom="-20px";
+heart.style.fontSize=(Math.random()*25+20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove()},4000);
+
+}
+
+
+function acceptLove(){
+
+const music=document.getElementById("loveMusic");
+music.play();
+
+// tạo tim bay
+for(let i=0;i<60;i++){
+ setTimeout(createHeart,i*50);
+}
+
+// ghi lại thời gian ký hợp đồng
+const now=new Date();
+const signTime= now.toLocaleString("vi-VN");
+
+const message=document.querySelector(".message");
+message.innerHTML=`Hợp đồng tình yêu đã ký thành công 💞 <br><br>🖊 Thuần đã ký lúc: <b>${signTime}</b>`;
+
+setTimeout(()=>{
+ document.getElementById("loveScreen").style.display="flex";
+},800);
+
+}
+
+// ===== NÚT TROLL KHÔNG ĐỒNG Ý =====
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover",()=>{
+
+const x = Math.random()*200 - 100;
+const y = Math.random()*200 - 100;
+
+noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+});
+
+let refuseCount = 0;
+noBtn.addEventListener("click",()=>{
+refuseCount++;
+
+if(refuseCount < 3){
+alert("Ơ kìa 😆 Thuần không thể từ chối hợp đồng này đâu!");
+}else{
+alert("⚠️ Thuần đã cố từ chối Linh 3 lần. Hệ thống tự động chuyển sang ĐỒNG Ý 💍");
+acceptLove();
+}
+});
+
+</script>
+
+</body>
+</html>
